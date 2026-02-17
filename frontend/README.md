@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# 🔍 Semantic Academic Search Engine - Multivariate Analysis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📝 Summary
+This project implements an advanced search engine for scientific articles, overcoming the limitations of traditional keyword searches. It uses state-of-the-art embeddings and a vector database to find papers based on their semantic meaning. The system stands out for its multivariate analysis capabilities, allowing users to weigh thematic relevance against recency (year of publication) to obtain accurate and up-to-date results.
 
-## Available Scripts
+## 🛠️ Stack of Libraries and Technologies
 
-In the project directory, you can run:
+The project integrates modern technologies in both data processing and web development:
 
-### `npm start`
+* **AI & NLP**: `HuggingFace` (model `all-MiniLM-L6-v2`) for generating 384-dimensional vectors.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **Vector Database**: `Pinecone` for efficient vector similarity storage and retrieval.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* **Backend**: `FastAPI` (Python) for a high-performance API and easy integration.
 
-### `npm test`
+* **Frontend**: `React.js` for a dynamic and responsive user interface.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **Orchestration**: `LangChain` to connect the language models to the vector database. 
 
-### `npm run build`
+## ⚙️ System and Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The system follows a data flow from document ingestion to results visualization.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![alt text](image.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The diagram represents the system's overall architecture, where the Ingest process transforms the dataset.csv into vectors using the HuggingFace model for storage in the Pinecone vector database. The operational flow begins when the user interacts with the React interface, sending a query and dynamic parameters ($k$ and time filter) to the FastAPI backend, which coordinates a semantic similarity search in Pinecone to retrieve the most relevant documents. Finally, the system applies a multivariate re-ranking that combines the similarity score with the publication year, returning a visually categorized and enriched results table to the end user.
 
-### `npm run eject`
+## 💡 Conclusiones
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The system demonstrates high semantic accuracy by using embeddings that identify deep contextual relationships, such as linking "Medical" with "Surgical Soft Robotics" without requiring exact keyword matches. This capability is enhanced by multivariate flexibility, where the combination of Similarity Score and publication year allows users to tailor their searches to find both solid theoretical foundations and the latest innovations. All of this is supported by a decoupled and scalable architecture that ensures optimal frontend performance even when handling thousands of documents, resulting in a robust and efficient research tool.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📚 Referencias
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* FastAPI documentation: [https://fastapi.tiangolo.com/](https://fastapi.tiangolo.com/)
+* Pinecone Vector Database: [https://www.pinecone.io/](https://www.pinecone.io/)
+* HuggingFace Models: [https://huggingface.co/models](https://huggingface.co/models)
+* Academic Dataset: Own / `dataset.csv`
